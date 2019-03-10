@@ -1,50 +1,38 @@
 package jp.co.sunarch.skillmgr.dto;
 
 import java.io.Serializable;
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JsonResponse implements Serializable{
 
-	private int responseCode = -1;
+	private JsonResponseRequest request = new JsonResponseRequest();
 
-	private int result = -1;
+	private JsonResponseResult result = new JsonResponseResult();
 
-	private String message;
+	private Map<String, Object> response = new HashMap<String, Object>();
 
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss.SSS")
-	private Date execTime;
-
-	public int getResponseCode() {
-		return responseCode;
+	public JsonResponseRequest getRequest() {
+		return request;
 	}
 
-	public void setResponseCode(int responseCode) {
-		this.responseCode = responseCode;
+	public void setRequest(JsonResponseRequest request) {
+		this.request = request;
 	}
 
-	public int getResult() {
+	public JsonResponseResult getResult() {
 		return result;
 	}
 
-	public void setResult(int result) {
+	public void setResult(JsonResponseResult result) {
 		this.result = result;
 	}
 
-	public String getMessage() {
-		return message;
+	public Map<String, Object> getResponse() {
+		return response;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public Date getExecTime() {
-		return execTime;
-	}
-
-	public void setExecTime(Date execTime) {
-		this.execTime = execTime;
+	public void setResponse(Map<String, Object> response) {
+		this.response = response;
 	}
 }
