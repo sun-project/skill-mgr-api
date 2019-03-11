@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import jp.co.sunarch.skillmgr.entity.TSkillsheetDetail;
 import jp.co.sunarch.skillmgr.entity.TSkillsheetHis;
 import jp.co.sunarch.skillmgr.entity.TSkillsheetProfile;
+import jp.co.sunarch.skillmgr.entity.repository.TSkillsheetDetailRepository;
 import jp.co.sunarch.skillmgr.entity.repository.TSkillsheetHisRepository;
 import jp.co.sunarch.skillmgr.entity.repository.TSkillsheetProfileRepository;
 
@@ -24,6 +26,8 @@ public class SkillMgrApiService {
 	TSkillsheetHisRepository skillsheetHisRepo;
 	@Autowired
 	TSkillsheetProfileRepository profileRepo;
+	@Autowired
+	TSkillsheetDetailRepository detailRepo;
 
 	/**
 	 * 経歴IDから経歴情報を取得する
@@ -31,7 +35,7 @@ public class SkillMgrApiService {
 	 * @return
 	 */
 	public TSkillsheetHis searchSkillsheet(String skillSheetId){
-		return skillsheetHisRepo.findOneSkillSheetId(skillSheetId);
+		return skillsheetHisRepo.findBySkillSheetId(skillSheetId);
 	}
 
 	/**
@@ -40,7 +44,7 @@ public class SkillMgrApiService {
 	 * @return
 	 */
 	public List<TSkillsheetHis> searchSkillSheetUserId(String userId){
-		return skillsheetHisRepo.findByUserId(userId);
+		return skillsheetHisRepo.findByUserIdOrderBySeqDesc(userId);
 	}
 
 	/**
@@ -49,7 +53,7 @@ public class SkillMgrApiService {
 	 * @return
 	 */
 	public TSkillsheetHis searchSkillSheetUserIdNewer(String userId){
-		return skillsheetHisRepo.findOneUserIdNewer(userId);
+		return skillsheetHisRepo.findByUserIdNewer(userId);
 	}
 
 	/**
@@ -58,6 +62,15 @@ public class SkillMgrApiService {
 	 * @return
 	 */
 	public TSkillsheetProfile searchSkillSheetProfile(int skillSheetHisId) {
-		return profileRepo.findOneSkillSheetHisId(skillSheetHisId);
+		return profileRepo.findBySkillSheetHisId(skillSheetHisId);
+	}
+
+	/**
+	 * 経歴情報IDからプロフィールを取得する
+	 * @param skillSheetHisId
+	 * @return
+	 */
+	public List<TSkillsheetDetail> searchSkillSheetDetail(int skillSheetHisId) {
+		return detailRepo.findBySkillSheetHisIdOrderBySkillNoAsc(skillSheetHisId);
 	}
 }

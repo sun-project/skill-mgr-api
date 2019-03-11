@@ -12,6 +12,6 @@ import jp.co.sunarch.skillmgr.entity.TSkillsheetProfilePrimaryKey;
  */
 public interface TSkillsheetProfileRepository extends JpaRepository<TSkillsheetProfile, TSkillsheetProfilePrimaryKey>{
 
-	public TSkillsheetProfile findOneSkillSheetHisId(int skillSheetHisId);
+	public TSkillsheetProfile findBySkillSheetHisId(int skillSheetHisId);
 
 }

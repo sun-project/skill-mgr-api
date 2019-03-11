@@ -21,7 +21,7 @@ public class JsonResponseProfile implements Serializable{
 	private Date birthday = null;
 
 	@JsonProperty("age")
-	private String age = null;
+	private int age = -1;
 
 	@JsonProperty("address")
 	private String address = null;
@@ -66,11 +66,11 @@ public class JsonResponseProfile implements Serializable{
 		this.birthday = birthday;
 	}
 
-	public String getAge() {
+	public int getAge() {
 		return age;
 	}
 
-	public void setAge(String age) {
+	public void setAge(int age) {
 		this.age = age;
 	}
 
