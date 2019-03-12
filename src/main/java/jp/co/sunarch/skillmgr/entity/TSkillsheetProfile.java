@@ -44,6 +44,7 @@ public class TSkillsheetProfile {
 
 	/** 年齢 */
 	@Column(name="age")
+	@Size(max = 3)
 	private int age = -1;
 
 	/** 住所 */
@@ -68,8 +69,12 @@ public class TSkillsheetProfile {
 
 	/** 卒業年月 */
 	@Column(name="graduation")
-	@Size(max = 255)
 	private Date graduation = null;
+
+	/** 卒業年月 */
+	@Column(name="graduation_type")
+	@Size(max = 255)
+	private String graduationType = null;
 
 	/** 資格 */
 	@Column(name="license_list")
@@ -183,5 +188,17 @@ public class TSkillsheetProfile {
 	}
 	public void setLastUpdateDate(Date lastUpdateDate) {
 		this.lastUpdateDate = lastUpdateDate;
+	}
+	public String getGraduationType() {
+		return graduationType;
+	}
+	public void setGraduationType(String graduationType) {
+		this.graduationType = graduationType;
+	}
+	public int getDelFlg() {
+		return delFlg;
+	}
+	public void setDelFlg(int delFlg) {
+		this.delFlg = delFlg;
 	}
 }

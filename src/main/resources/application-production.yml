@@ -2,10 +2,10 @@ spring:
   application:
     name: skillMgrApi
   datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:skillMgr;DB_CLOSE_ON_EXIT=TRUE;MODE=MySQL
-    username: sa
-    password: 
+    url: jdbc:mysql://mysql:3306/skillMgr
+    username: skillMgr
+    password: password
+    driverClassName: com.mysql.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
       pool-name: ConnectionPool
@@ -14,7 +14,6 @@ spring:
       minimum-idle: 5
       maximum-pool-size: 10
       auto-commit: false
-    initialization-mode: embedded
   jpa:
     database: MYSQL
     hibernate:
@@ -22,14 +21,14 @@ spring:
   cloud:
     service-registry:
       auto-registration:
-        enabled: false
+        enabled: true
 server:
   port: 8081
 eureka:
   client:
-    enabled: false
+    enabled: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://discovery:8761/eureka
 logging:
   level:
     root: INFO

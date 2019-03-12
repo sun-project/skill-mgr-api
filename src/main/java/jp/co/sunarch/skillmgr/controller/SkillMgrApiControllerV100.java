@@ -24,6 +24,7 @@ import jp.co.sunarch.skillmgr.dto.JsonResponse;
 import jp.co.sunarch.skillmgr.dto.JsonResponseProfile;
 import jp.co.sunarch.skillmgr.dto.JsonResponseSkill;
 import jp.co.sunarch.skillmgr.dto.JsonResponseSkillSheet;
+import jp.co.sunarch.skillmgr.dto.JsonResponseSkillSheets;
 import jp.co.sunarch.skillmgr.entity.TSkillsheetDetail;
 import jp.co.sunarch.skillmgr.entity.TSkillsheetHis;
 import jp.co.sunarch.skillmgr.entity.TSkillsheetProfile;
@@ -91,6 +92,7 @@ public class SkillMgrApiControllerV100 {
 			profile.setFinalEducation(dataProfile.getFinalEducation());
 			profile.setDepartment(dataProfile.getDepartment());
 			profile.setGraduation(dataProfile.getGraduation());
+			profile.setGraduationType(dataProfile.getGraduationType());
 			profile.setLicenseList(dataProfile.getLicenseList());
 
 			resSkillSheet.setSkillList(new ArrayList<JsonResponseSkill>());
@@ -149,9 +151,9 @@ public class SkillMgrApiControllerV100 {
 
 			List<TSkillsheetHis> dataList = service.searchSkillSheetUserId(userId);
 
-			List<JsonResponseSkillSheet> resList = new ArrayList<JsonResponseSkillSheet>();
+			List<JsonResponseSkillSheets> resList = new ArrayList<JsonResponseSkillSheets>();
 			for(TSkillsheetHis dataSkillsheet : dataList) {
-				JsonResponseSkillSheet resSkillSheet = new JsonResponseSkillSheet();
+				JsonResponseSkillSheets resSkillSheet = new JsonResponseSkillSheets();
 
 				resSkillSheet.setId(dataSkillsheet.getSkillSheetId());
 				resSkillSheet.setCreateTimestamp(dataSkillsheet.getCreateDate());

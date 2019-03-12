@@ -39,6 +39,9 @@ public class JsonResponseProfile implements Serializable{
 	@JsonFormat(pattern = "yyyy-MM")
 	private Date graduation = null;
 
+	@JsonProperty("graduation_type")
+	private String graduationType = null;
+
 	@JsonProperty("license_list")
 	private List<String> licenseList = new ArrayList<String>();
 
@@ -120,6 +123,14 @@ public class JsonResponseProfile implements Serializable{
 
 	public void setLicenseList(List<String> licenseList) {
 		this.licenseList = licenseList;
+	}
+
+	public String getGraduationType() {
+		return graduationType;
+	}
+
+	public void setGraduationType(String graduationType) {
+		this.graduationType = graduationType;
 	}
 
 }
