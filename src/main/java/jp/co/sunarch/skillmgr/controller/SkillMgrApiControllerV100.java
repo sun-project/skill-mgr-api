@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,8 @@ import jp.co.sunarch.skillmgr.service.SkillMgrApiService;
 public class SkillMgrApiControllerV100 {
 
 	private Log logger = LogFactory.getLog(SkillMgrApiControllerV100.class);
+
+	private static final String AUTH_USER_ID = "X_GATEWAY_USER_ID";
 
 	@Autowired
 	SkillMgrApiService service;
@@ -141,7 +144,7 @@ public class SkillMgrApiControllerV100 {
 	 * @return
 	 */
 	@RequestMapping(value = "/skillsheets/list", method = RequestMethod.GET)
-	public ResponseEntity<JsonResponse> userSkillsheetList(@RequestParam("user_id") String userId, @RequestParam(name = "limit", required = false, defaultValue = "-1") int limit) {
+	public ResponseEntity<JsonResponse> userSkillsheetList(@RequestHeader(AUTH_USER_ID) String userId, @RequestParam(name = "limit", required = false, defaultValue = "-1") int limit) {
 		JsonResponse res = new JsonResponse();
 
 		try {
