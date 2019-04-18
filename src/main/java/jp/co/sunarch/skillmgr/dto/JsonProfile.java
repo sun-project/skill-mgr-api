@@ -8,7 +8,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class JsonResponseProfile implements Serializable{
+public class JsonProfile implements Serializable{
 
 	@JsonProperty("full_name")
 	private String fullName = null;

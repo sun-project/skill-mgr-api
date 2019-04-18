@@ -44,7 +44,6 @@ public class TSkillsheetProfile {
 
 	/** 年齢 */
 	@Column(name="age")
-	@Size(max = 3)
 	private int age = -1;
 
 	/** 住所 */

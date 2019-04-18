@@ -8,7 +8,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class JsonResponseSkill  implements Serializable{
+public class JsonSkill  implements Serializable{
 
 	@JsonProperty("work_from")
 	@JsonFormat(pattern = "yyyy-MM")

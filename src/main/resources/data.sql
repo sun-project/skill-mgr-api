@@ -14,7 +14,7 @@ INTO t_skillsheet_his(
   , last_update_date
 )
 VALUES (
-  99999999
+  1
   , 'Qjk63PZHfs89RDNheWD2veTXG3epc1qc'
   , 'tnemoto'
   , 1
@@ -37,7 +37,7 @@ INTO t_skillsheet_his(
   , last_update_date
 )
 VALUES (
-  99999998
+  2
   , 'KHjPAqOYxIRco1rAz07NYl7wRza2UFnc'
   , 'tnemoto'
   , 1
@@ -71,7 +71,7 @@ INTO t_skillsheet_profile(
   , last_update_date
 )
 VALUES (
-  99999999
+  1
   , '根本翼'
   , '男'
   , '1982-10-15'
@@ -111,7 +111,7 @@ INTO t_skillsheet_profile(
   , last_update_date
 )
 VALUES (
-  99999998
+  2
   , '根本翼２'
   , '男'
   , '1982-10-15'
@@ -153,7 +153,7 @@ INTO t_skillsheet_detail(
   , last_update_date
 )
 VALUES (
-  99999999
+  1
   , 1
   , '2013-04-01'
   , '2014-03-01'
@@ -192,7 +192,7 @@ INTO t_skillsheet_detail(
   , last_update_date
 )
 VALUES (
-  99999999
+  1
   , 2
   , '2014-03-01'
   , '9999-12-31'
@@ -231,7 +231,7 @@ INTO t_skillsheet_detail(
   , last_update_date
 )
 VALUES (
-  99999998
+  2
   , 1
   , '2013-04-01'
   , '2014-03-01'
@@ -270,7 +270,7 @@ INTO t_skillsheet_detail(
   , last_update_date
 )
 VALUES (
-  99999998
+  2
   , 2
   , '2014-03-01'
   , '9999-12-31'

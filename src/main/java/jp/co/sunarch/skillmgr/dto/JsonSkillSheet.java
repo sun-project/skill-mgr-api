@@ -7,7 +7,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class JsonResponseSkillSheet implements Serializable{
+public class JsonSkillSheet implements Serializable{
 
 	private String id = null;
 
@@ -26,10 +26,10 @@ public class JsonResponseSkillSheet implements Serializable{
 	private String lastUpdateUser = null;
 
 	@JsonProperty("profile")
-	private JsonResponseProfile profile = null;
+	private JsonProfile profile = null;
 
 	@JsonProperty("skill_list")
-	private List<JsonResponseSkill> skillList = null;
+	private List<JsonSkill> skillList = null;
 
 	public String getId() {
 		return id;
@@ -71,19 +71,19 @@ public class JsonResponseSkillSheet implements Serializable{
 		this.lastUpdateUser = lastUpdateUser;
 	}
 
-	public JsonResponseProfile getProfile() {
+	public JsonProfile getProfile() {
 		return profile;
 	}
 
-	public void setProfile(JsonResponseProfile profile) {
+	public void setProfile(JsonProfile profile) {
 		this.profile = profile;
 	}
 
-	public List<JsonResponseSkill> getSkillList() {
+	public List<JsonSkill> getSkillList() {
 		return skillList;
 	}
 
-	public void setSkillList(List<JsonResponseSkill> skillList) {
+	public void setSkillList(List<JsonSkill> skillList) {
 		this.skillList = skillList;
 	}
 }
