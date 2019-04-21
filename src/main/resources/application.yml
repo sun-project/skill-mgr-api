@@ -23,6 +23,9 @@ spring:
     service-registry:
       auto-registration:
         enabled: false
+  h2:
+    console:
+      enabled: true
 server:
   port: 8081
 eureka:

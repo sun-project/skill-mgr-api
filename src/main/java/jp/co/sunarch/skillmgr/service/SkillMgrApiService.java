@@ -1,6 +1,5 @@
 package jp.co.sunarch.skillmgr.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.RandomStringUtils;
@@ -94,14 +93,17 @@ public class SkillMgrApiService {
 		entity.setSkillSheetHisId(skillSheetHisId);
 		entity.setSkillSheetId(RandomStringUtils.randomAlphanumeric(32));
 		entity.setUserId(userId);
-		entity.setCreateDate(new Date());
 		entity.setCreateUserId(userId);
-		entity.setLastUpdateDate(new Date());
 		entity.setLastUpdateUserId(userId);
-		entity.setDelFlg(0);
 
 		skillsheetHisRepo.save(entity);
 
+		return entity;
+	}
+
+	public TSkillsheetHis saveSkillSheetHis(TSkillsheetHis entity, String userId) {
+		entity.setLastUpdateUserId(userId);
+		skillsheetHisRepo.save(entity);
 		return entity;
 	}
 
@@ -111,11 +113,8 @@ public class SkillMgrApiService {
 	 * @param userId
 	 */
 	public TSkillsheetProfile saveSkillSheetProfile(TSkillsheetProfile entity, String userId) {
-		entity.setCreateDate(new Date());
 		entity.setCreateUserId(userId);
-		entity.setLastUpdateDate(new Date());
 		entity.setLastUpdateUserId(userId);
-		entity.setDelFlg(0);
 
 		profileRepo.save(entity);
 		return entity;
@@ -124,15 +123,16 @@ public class SkillMgrApiService {
 	public List<TSkillsheetDetail> saveSillSheetDetail(List<TSkillsheetDetail> entityList, String userId){
 
 		for(TSkillsheetDetail entity : entityList) {
-			entity.setCreateDate(new Date());
 			entity.setCreateUserId(userId);
-			entity.setLastUpdateDate(new Date());
 			entity.setLastUpdateUserId(userId);
-			entity.setDelFlg(0);
 
 			detailRepo.save(entity);
 		}
 
 		return entityList;
+	}
+
+	public void deleteSillSheetDetail(int skillSheetHisId) {
+		detailRepo.deleteBySkillSheetHisId(skillSheetHisId);
 	}
 }

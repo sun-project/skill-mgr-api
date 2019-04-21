@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
 
 import jp.co.sunarch.skillmgr.entity.converter.JsonArrayConverter;
 
@@ -22,7 +21,7 @@ import jp.co.sunarch.skillmgr.entity.converter.JsonArrayConverter;
 @Entity
 @IdClass(TSkillsheetDetailPrimaryKey.class)
 @Table(name = "t_skillsheet_detail")
-public class TSkillsheetDetail {
+public class TSkillsheetDetail extends AbstractEntity{
 
 	/** 経歴情報ID */
 	@Id
@@ -80,24 +79,18 @@ public class TSkillsheetDetail {
 	@Convert(converter=JsonArrayConverter.class)
 	private List<String> otherList = new ArrayList<String>();
 
-	/** 削除フラグ */
-	@Column(name="del_flg", nullable = false)
-	private int delFlg = -1;
-	/** 作成者 */
-	@Column(name="create_user_id", nullable = false)
-	@Size(max = 255)
-	private String createUserId = null;
-	/** 作成日時 */
-	@Column(name="create_date", nullable = false)
-	private Date createDate = null;
-	/** 最終更新者 */
-	@Column(name="last_update_user_id", nullable = false)
-	@Size(max = 255)
-	private String lastUpdateUserId = null;
-	/** 最終更新日時 */
-	@Column(name="last_update_date", nullable = false)
-	private Date lastUpdateDate = null;
-
+	public int getSkillNo() {
+		return skillNo;
+	}
+	public void setSkillNo(int skillNo) {
+		this.skillNo = skillNo;
+	}
+	public String getScaleName() {
+		return scaleName;
+	}
+	public void setScaleName(String scaleName) {
+		this.scaleName = scaleName;
+	}
 	public int getSkillSheetHisId() {
 		return skillSheetHisId;
 	}
@@ -158,47 +151,4 @@ public class TSkillsheetDetail {
 	public void setOtherList(List<String> otherList) {
 		this.otherList = otherList;
 	}
-	public int getDelFlg() {
-		return delFlg;
-	}
-	public void setDelFlg(int delFlg) {
-		this.delFlg = delFlg;
-	}
-	public String getCreateUserId() {
-		return createUserId;
-	}
-	public void setCreateUserId(String createUserId) {
-		this.createUserId = createUserId;
-	}
-	public Date getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-	public String getLastUpdateUserId() {
-		return lastUpdateUserId;
-	}
-	public void setLastUpdateUserId(String lastUpdateUserId) {
-		this.lastUpdateUserId = lastUpdateUserId;
-	}
-	public Date getLastUpdateDate() {
-		return lastUpdateDate;
-	}
-	public void setLastUpdateDate(Date lastUpdateDate) {
-		this.lastUpdateDate = lastUpdateDate;
-	}
-	public int getSkillNo() {
-		return skillNo;
-	}
-	public void setSkillNo(int skillNo) {
-		this.skillNo = skillNo;
-	}
-	public String getScaleName() {
-		return scaleName;
-	}
-	public void setScaleName(String scaleName) {
-		this.scaleName = scaleName;
-	}
-
 }

@@ -134,9 +134,81 @@ public class SkillMgrApiControllerV100 {
 	 * @param skillsheetId
 	 * @return
 	 */
-	@RequestMapping(value = "/skillsheets/{skillsheet_id}/update", method = RequestMethod.POST)
-	public ResponseEntity<JsonResponse> skillsheetUpdate() {
-		return sample(new JsonRequest());
+	@RequestMapping(value = "/skillsheets/{skillsheet_id}/update", method = RequestMethod.PUT)
+	public ResponseEntity<JsonResponse> skillsheetUpdate(@RequestHeader(AUTH_USER_ID) String userId, @PathVariable("skillsheet_id") String skillsheetId, @RequestBody JsonCreateRequest req) {
+		JsonResponse res = new JsonResponse();
+
+		try {
+			res.getRequest().setId(RandomStringUtils.randomAlphanumeric(32));
+			res.getRequest().setProcessStartTime(new Date());
+			res.getRequest().setControllerName(this.getClass().getName());
+
+			TSkillsheetHis skillSheetHis = service.searchSkillsheet(skillsheetId);
+			service.saveSkillSheetHis(skillSheetHis, userId);
+
+			if(req.getSkillSheet().getProfile() != null) {
+				TSkillsheetProfile profile = service.searchSkillSheetProfile(skillSheetHis.getSkillSheetHisId());
+				profile.setFullName(req.getSkillSheet().getProfile().getFullName());
+				profile.setSex(req.getSkillSheet().getProfile().getSexName());
+				profile.setBirthday(req.getSkillSheet().getProfile().getBirthday());
+				profile.setAge(req.getSkillSheet().getProfile().getAge());
+				profile.setAddress(req.getSkillSheet().getProfile().getAddress());
+				profile.setNearestStation(req.getSkillSheet().getProfile().getNearestStation());
+				profile.setFinalEducation(req.getSkillSheet().getProfile().getFinalEducation());
+				profile.setDepartment(req.getSkillSheet().getProfile().getDepartment());
+				profile.setGraduation(req.getSkillSheet().getProfile().getGraduation());
+				profile.setGraduationType(req.getSkillSheet().getProfile().getGraduationType());
+				profile.setLicenseList(req.getSkillSheet().getProfile().getLicenseList());
+				service.saveSkillSheetProfile(profile, userId);
+			}
+
+			if(req.getSkillSheet().getSkillList() != null) {
+				service.deleteSillSheetDetail(skillSheetHis.getSkillSheetHisId());
+
+				List<TSkillsheetDetail> detailList = new ArrayList<TSkillsheetDetail>();
+				for(int i=0;i<req.getSkillSheet().getSkillList().size();i++) {
+					JsonSkill skill = req.getSkillSheet().getSkillList().get(i);
+
+					TSkillsheetDetail detail = new TSkillsheetDetail();
+					detail.setSkillSheetHisId(skillSheetHis.getSkillSheetHisId());
+					detail.setSkillNo(i + 1);
+					detail.setWorkFromDate(skill.getWorkFrom());
+					detail.setWorkToDate(skill.getWorkTo());
+					detail.setSystemName(skill.getSystemName());
+					detail.setStepList(skill.getStepList());
+					detail.setPositionList(skill.getPositionList());
+					detail.setScaleName(skill.getScaleName());
+					detail.setEnvironmentList(skill.getEnvironmentList());
+					detail.setMiddlewareList(skill.getMiddlewareList());
+					detail.setLanguageList(skill.getLanguageList());
+					detail.setOtherList(skill.getOtherList());
+
+					detailList.add(detail);
+				}
+				service.saveSillSheetDetail(detailList, userId);
+			}
+
+			List<JsonResponseSkillSheets> resList = new ArrayList<JsonResponseSkillSheets>();
+			JsonResponseSkillSheets resSkillSheet = new JsonResponseSkillSheets();
+			resSkillSheet.setId(skillSheetHis.getSkillSheetId());
+			resSkillSheet.setCreateTimestamp(skillSheetHis.getCreateDate());
+			resSkillSheet.setCreateUser(skillSheetHis.getCreateUserId());
+			resSkillSheet.setLastUpdateTimestamp(skillSheetHis.getLastUpdateDate());
+			resSkillSheet.setLastUpdateUser(skillSheetHis.getLastUpdateUserId());
+			resList.add(resSkillSheet);
+
+			res.getResponse().put("skill_sheet_list", resList);
+
+			res.getResult().setCode(HttpURLConnection.HTTP_OK);
+			res.getResult().setMessage("成功");
+		} catch(Exception e) {
+			logger.error(e);
+			res.getResult().setCode(HttpURLConnection.HTTP_BAD_REQUEST);
+		} finally {
+			res.getRequest().setProcessEndTime(new Date());
+		}
+
+		return ResponseEntity.ok(res);
 	}
 
 	/**

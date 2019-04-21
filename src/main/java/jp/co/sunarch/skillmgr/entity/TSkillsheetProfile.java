@@ -21,7 +21,7 @@ import jp.co.sunarch.skillmgr.entity.converter.JsonArrayConverter;
 @Entity
 @IdClass(TSkillsheetHisPrimaryKey.class)
 @Table(name = "t_skillsheet_profile")
-public class TSkillsheetProfile {
+public class TSkillsheetProfile extends AbstractEntity{
 
 	/** 経歴情報ID */
 	@Id
@@ -79,24 +79,6 @@ public class TSkillsheetProfile {
 	@Column(name="license_list")
 	@Convert(converter=JsonArrayConverter.class)
 	private List<String> licenseList = null;
-
-	/** 削除フラグ */
-	@Column(name="del_flg", nullable = false)
-	private int delFlg = -1;
-	/** 作成者 */
-	@Column(name="create_user_id", nullable = false)
-	@Size(max = 255)
-	private String createUserId = null;
-	/** 作成日時 */
-	@Column(name="create_date", nullable = false)
-	private Date createDate = null;
-	/** 最終更新者 */
-	@Column(name="last_update_user_id", nullable = false)
-	@Size(max = 255)
-	private String lastUpdateUserId = null;
-	/** 最終更新日時 */
-	@Column(name="last_update_date", nullable = false)
-	private Date lastUpdateDate = null;
 
 	public int getSkillSheetHisId() {
 		return skillSheetHisId;
@@ -164,40 +146,10 @@ public class TSkillsheetProfile {
 	public void setLicenseList(List<String> licenseList) {
 		this.licenseList = licenseList;
 	}
-	public String getCreateUserId() {
-		return createUserId;
-	}
-	public void setCreateUserId(String createUserId) {
-		this.createUserId = createUserId;
-	}
-	public Date getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-	public String getLastUpdateUserId() {
-		return lastUpdateUserId;
-	}
-	public void setLastUpdateUserId(String lastUpdateUserId) {
-		this.lastUpdateUserId = lastUpdateUserId;
-	}
-	public Date getLastUpdateDate() {
-		return lastUpdateDate;
-	}
-	public void setLastUpdateDate(Date lastUpdateDate) {
-		this.lastUpdateDate = lastUpdateDate;
-	}
 	public String getGraduationType() {
 		return graduationType;
 	}
 	public void setGraduationType(String graduationType) {
 		this.graduationType = graduationType;
-	}
-	public int getDelFlg() {
-		return delFlg;
-	}
-	public void setDelFlg(int delFlg) {
-		this.delFlg = delFlg;
 	}
 }

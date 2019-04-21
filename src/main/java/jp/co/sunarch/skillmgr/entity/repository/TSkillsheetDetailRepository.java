@@ -16,4 +16,5 @@ public interface TSkillsheetDetailRepository extends JpaRepository<TSkillsheetDe
 
 	public List<TSkillsheetDetail> findBySkillSheetHisIdOrderBySkillNoAsc(int skillSheetHisId);
 
+	public int deleteBySkillSheetHisId(int skillSheetHisId);
 }
