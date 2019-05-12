@@ -24,6 +24,7 @@ import jp.co.sunarch.skillmgr.dto.JsonCreateRequest;
 import jp.co.sunarch.skillmgr.dto.JsonProfile;
 import jp.co.sunarch.skillmgr.dto.JsonRequest;
 import jp.co.sunarch.skillmgr.dto.JsonResponse;
+import jp.co.sunarch.skillmgr.dto.JsonResponseError;
 import jp.co.sunarch.skillmgr.dto.JsonResponseSkillSheets;
 import jp.co.sunarch.skillmgr.dto.JsonSkill;
 import jp.co.sunarch.skillmgr.dto.JsonSkillSheet;
@@ -120,8 +121,11 @@ public class SkillMgrApiControllerV100 {
 			res.getResult().setCode(HttpURLConnection.HTTP_OK);
 			res.getResult().setMessage("成功");
 		} catch(Exception e) {
-			logger.error(e);
+			logger.error(e.getMessage(), e);
 			res.getResult().setCode(HttpURLConnection.HTTP_BAD_REQUEST);
+			ArrayList<JsonResponseError> errorList = new ArrayList<JsonResponseError>();
+			errorList.add(new JsonResponseError("999", e.getMessage()));
+			res.getResult().setErrorList(errorList);
 		} finally {
 			res.getRequest().setProcessEndTime(new Date());
 		}
@@ -202,8 +206,11 @@ public class SkillMgrApiControllerV100 {
 			res.getResult().setCode(HttpURLConnection.HTTP_OK);
 			res.getResult().setMessage("成功");
 		} catch(Exception e) {
-			logger.error(e);
+			logger.error(e.getMessage(), e);
 			res.getResult().setCode(HttpURLConnection.HTTP_BAD_REQUEST);
+			ArrayList<JsonResponseError> errorList = new ArrayList<JsonResponseError>();
+			errorList.add(new JsonResponseError("999", e.getMessage()));
+			res.getResult().setErrorList(errorList);
 		} finally {
 			res.getRequest().setProcessEndTime(new Date());
 		}
@@ -245,8 +252,11 @@ public class SkillMgrApiControllerV100 {
 			res.getResult().setCode(HttpURLConnection.HTTP_OK);
 			res.getResult().setMessage("成功");
 		} catch(Exception e) {
-			logger.error(e);
+			logger.error(e.getMessage(), e);
 			res.getResult().setCode(HttpURLConnection.HTTP_BAD_REQUEST);
+			ArrayList<JsonResponseError> errorList = new ArrayList<JsonResponseError>();
+			errorList.add(new JsonResponseError("999", e.getMessage()));
+			res.getResult().setErrorList(errorList);
 		} finally {
 			res.getRequest().setProcessEndTime(new Date());
 		}
@@ -325,8 +335,11 @@ public class SkillMgrApiControllerV100 {
 			res.getResult().setCode(HttpURLConnection.HTTP_OK);
 			res.getResult().setMessage("成功");
 		} catch(Exception e) {
-			logger.error(e);
+			logger.error(e.getMessage(), e);
 			res.getResult().setCode(HttpURLConnection.HTTP_BAD_REQUEST);
+			ArrayList<JsonResponseError> errorList = new ArrayList<JsonResponseError>();
+			errorList.add(new JsonResponseError("999", e.getMessage()));
+			res.getResult().setErrorList(errorList);
 		} finally {
 			res.getRequest().setProcessEndTime(new Date());
 		}
