@@ -31,7 +31,7 @@ eureka:
       defaultZone: http://discovery:8761/eureka
 logging:
   level:
-    root: INFO
     org.springframework.web: DEBUG
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
     jp.co.sunarch: DEBUG
   file: logs/${spring.application.name}.log

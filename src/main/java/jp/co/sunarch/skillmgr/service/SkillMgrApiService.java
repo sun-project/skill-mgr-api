@@ -85,12 +85,12 @@ public class SkillMgrApiService {
 	 * @return
 	 */
 	public TSkillsheetHis saveSkillSheetHis(String userId) {
-		int skillSheetHisId = (int)skillsheetHisRepo.findByMaxSkillSheetHisId().get("skill_sheet_his_id");
+		Number skillSheetHisId = (Number)skillsheetHisRepo.findByMaxSkillSheetHisId().get("skill_sheet_his_id");
 
 		logger.debug("max skill_sheet_his_id:" + skillSheetHisId);
 
 		TSkillsheetHis entity = new TSkillsheetHis();
-		entity.setSkillSheetHisId(skillSheetHisId);
+		entity.setSkillSheetHisId(skillSheetHisId.intValue());
 		entity.setSkillSheetId(RandomStringUtils.randomAlphanumeric(32));
 		entity.setUserId(userId);
 		entity.setCreateUserId(userId);
